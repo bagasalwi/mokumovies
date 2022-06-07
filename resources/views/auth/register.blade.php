@@ -1,77 +1,97 @@
-@extends('layouts.app')
+@extends('layouts.master-auth')
+
+@section('meta_title')Register @endsection
+@section('bg-color')primary-pattern-1 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
+<section class="section">
+    <div class="container mt-5">
+        <div class="login-brand">
+            <img src="{{ asset('gambar/logo/logo.png')}}" alt="logo" width="250">
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-body bd-radius-2 shadow">
+                    <h3 class="text-center text-primary fw-700 mb-4">Register Your Account</h3>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Nama Lengkap</label>
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                    @error('name')
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    @error('email')
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="form-group">
+                                    <label for="password" class="d-block">Password</label>
+                                    <input id="password" type="password" data-indicator="pwindicator"
+                                        class="form-control pwstrength @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="new-password">
+                                    <div id="pwindicator" class="pwindicator w-100">
+                                        <div class="bar"></div>
+                                        <div class="label"></div>
+                                    </div>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    @error('password')
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="form-group">
+                                    <label for="password2" class="d-block">Konfirmasi Password</label>
+                                    <input id="password-confirm" type="password" class="form-control"
+                                        name="password_confirmation" required autocomplete="new-password">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                        {{-- <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="agree" class="custom-control-input" id="agree">
+                                <label class="custom-control-label" for="agree">Saya Setuju dengan Syarat &
+                                    Ketentuan</label>
                             </div>
+                        </div> --}}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Daftar Akun
+                            </button>
                         </div>
                     </form>
+                    <div class="text-center">
+                        <p class="text-secondary">Have an Account ?
+                            <a class="text-primary fw-600" href="{{ url('login') }}">Sign In</a>
+                        </p>
+                        <a class="text-dark" href="{{ url('/') }}">Back to Home</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection

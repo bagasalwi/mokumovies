@@ -3,18 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserFavorites;
 
 class MainController extends Controller
 {
 
     public function __construct(){
+        $this->middleware(['auth']);
         $this->apiKey = '39c6e52b';
         $this->baseUrl = "https://www.omdbapi.com/?apikey=" . $this->apiKey;
     }
 
+    public function switchLang($lang)
+    {
+        if (array_key_exists($lang, config('language'))) {
+            session()->put('applocale', $lang);
+        }
+        return redirect()->back();
+    }
+
     public function home(){
         $client = new \GuzzleHttp\Client();
-        $request = $client->get($this->baseUrl . "&i=tt0944947&Season=1");
+        $request = $client->get($this->baseUrl . "&s=batman&page=1");
 
         $data['response'] = $request->getStatusCode();
 
@@ -22,13 +32,12 @@ class MainController extends Controller
             $data['body'] = json_decode($request->getBody());
         }
 
-        dd($data,$this->baseUrl . "&i=tt0944947");
-        return view('welcome');
+        return view('home',$data);
     }
 
     public function movieDetail($id){
         $client = new \GuzzleHttp\Client();
-        $request = $client->get($this->baseUrl . "&i=" . $id);
+        $request = $client->get($this->baseUrl . "&i=" . $id . "&plot=full");
 
         $data['response'] = $request->getStatusCode();
 
@@ -68,7 +77,7 @@ class MainController extends Controller
             if($data['response'] == 200){
                 $data['body'] = json_decode($request->getBody());
 
-                return response()->json($data['body']);
+                return view('layouts.movies',$data);
             }
         }
     }
