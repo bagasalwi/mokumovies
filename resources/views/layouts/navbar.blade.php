@@ -6,7 +6,6 @@
                 class="fas fa-bars text-white"></span></button>
         <a class="navbar-brand mx-auto py-2" href="{{ url('/') }}">
             <h4 class="no-pm">Mokumovies</h4>
-            {{-- <h4 class="no-pm nav-link">MOKultur</h4> --}}
         </a>
     </div>
 </nav>
