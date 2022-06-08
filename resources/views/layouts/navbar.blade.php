@@ -27,7 +27,7 @@
             </li>
             <li class="nav-item py-2">
                 <a class="nav-link text-white {{ request()->is('browse') || request()->is('browse/*') ? 'font-weight-bold' : '' }}"
-                    href="{{ route('favorite') }}">My Favorite</a>
+                    href="{{ route('favorite') }}">{{__('lang.navbar.favorite')}}</a>
             </li>
 
             @php
@@ -45,7 +45,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();" href="#">
-                        Logout
+                        {{__('lang.navbar.logout')}}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
