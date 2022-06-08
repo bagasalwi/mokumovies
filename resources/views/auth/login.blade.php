@@ -16,7 +16,7 @@
                     <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                         @csrf
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>Username</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
@@ -26,13 +26,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <div class="d-block">
-                                <div class="float-right">
-                                    <a href="{{ route('password.request') }}" class="text-small text-danger">
-                                        Forgot Password?
-                                    </a>
-                                </div>
-                            </div>
                             <label>Password</label>
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" tabindex="2"
@@ -56,14 +49,14 @@
                             </button>
                         </div>
                     </form>
-                    <div class="text-center">
+                    {{-- <div class="text-center">
                         <p class="text-secondary">Need Account ?
                             <a class="text-primary fw-500" href="{{ url('register') }}">Register</a>
                         </p>
                         <p>
                             <a class="text-dark" href="{{ url('/') }}">Back to Home</a>
                         </p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
