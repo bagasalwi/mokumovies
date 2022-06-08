@@ -5,7 +5,7 @@
         <button data-trigger="#navbar_main" class="navbar-toggler pl-0" type="button"><span
                 class="fas fa-bars text-white"></span></button>
         <a class="navbar-brand mx-auto py-2" href="{{ url('/') }}">
-            <img src="{{ asset('gambar/logo/logo.png')}}" alt="">
+            <h4 class="no-pm">Mokumovies</h4>
             {{-- <h4 class="no-pm nav-link">MOKultur</h4> --}}
         </a>
     </div>
@@ -15,7 +15,7 @@
 <nav id="navbar_main" class="mobile-offcanvas navbar navbar-dark navbar-transparent fixed-top navbar-expand-lg">
     <div class="container nav-cont">
         <a class="navbar-brand d-none d-lg-block" href="{{ url('/') }}">
-            <img src="{{ asset('gambar/logo/logo.png')}}" alt="">
+            <h4 class="no-pm">Mokumovies</h4>
         </a>
         <div class="offcanvas-header">
             <button class="navbar-toggler btn-close"><span class="fas fa-bars"></span></button>

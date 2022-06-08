@@ -44,4 +44,15 @@ class FavoriteMovieController extends Controller
             'message' => 'Movie added to favorites'
         ]);
     }
+
+    public function delFavorites(Request $request){
+        $user = auth()->user()->id;
+
+        UserFavorites::where('id',$request->id)->where('user_id',$user)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Movie deleted from favorites'
+        ]);
+    }
 }

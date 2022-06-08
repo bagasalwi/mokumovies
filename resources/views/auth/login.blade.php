@@ -6,8 +6,8 @@
 @section('content')
 <section class="section">
     <div class="container mt-5">
-        <div class="login-brand">
-            <img src="{{ asset('gambar/logo/logo.png')}}" alt="logo" width="250">
+        <div class="login-brand text-white">
+            <h6>Mokumovies</h6>
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">

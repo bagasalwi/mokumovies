@@ -60,12 +60,12 @@ class MainController extends Controller
             }
 
             // if type exist (movie, series, episode)
-            if($request->has('type')){
+            if($request->type != 'all'){
                 $reqUrl .= "&type=" . $request->type;
             }
 
             // if year exist
-            if($request->has('y')){
+            if($request->y != 'all'){
                 $reqUrl .= "&y=" . $request->y;
             }
 
@@ -74,11 +74,19 @@ class MainController extends Controller
 
             $data['response'] = $request->getStatusCode();
 
-            if($data['response'] == 200){
-                $data['body'] = json_decode($request->getBody());
-
+            $data['body'] = json_decode($request->getBody());
+            
+            if($data['body']->Response == "True"){
+                
                 return view('layouts.movies',$data);
+            }else{
+
+                return response()->json([
+                    'success' => false,
+                    'html' => view('layouts.nodata')->render()
+                ]);
             }
+
         }
     }
 }

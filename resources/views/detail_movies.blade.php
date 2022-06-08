@@ -10,7 +10,7 @@
                 <h1 class="text-white fw-700 no-pm data-font-size="40px"">{{ $body->Title }}</h1>
                 <h6 class="no-pm ">
                     <span class="badge badge-white font-weight-bold">{{ $body->Rated }}</span>
-                    <span class="badge badge-white font-weight-bold">Released : {{ $body->Released }}</span>
+                    <span class="badge badge-white font-weight-bold">{{__('lang.detail.released')}} : {{ $body->Released }}</span>
                 </h6>
                 
             </div>
@@ -27,7 +27,7 @@
                     <img class="img-review bd-radius-2 mx-auto d-block shadow-sm" loading="lazy"
                         src="{{ $body->Poster }}" alt="">
                 </div>
-                <a href="{{ $body->Website }}" class="btn btn-sm btn-light btn-block mb-4">Visit Website</a>
+                <a onclick="addFavorite('{{ $body->Title }}','{{ $body->imdbID }}','{{ $body->Poster }}','{{ $body->Year }}')" class="btn btn-light btn-block mb-4">{{__('lang.home.addbutton')}}</a>
             </div>
             <div class="col-md-9 col-sm-12">
                 <div class="card card-body bd-radius-2">
@@ -37,22 +37,22 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="information-tab" data-toggle="tab"
                                         href="#information" role="tab" aria-controls="home"
-                                        aria-selected="true">Information</a>
+                                        aria-selected="true">{{__('lang.detail.information')}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="synopsis-tab" data-toggle="tab"
                                         href="#synopsis" role="tab" aria-controls="synopsis"
-                                        aria-selected="false">Plot</a>
+                                        aria-selected="false">{{__('lang.detail.plot')}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="directions-tab" data-toggle="tab"
                                         href="#directions" role="tab" aria-controls="directions"
-                                        aria-selected="false">Directions Information</a>
+                                        aria-selected="false">{{__('lang.detail.directions')}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="ratings-tab" data-toggle="tab"
                                         href="#ratings" role="tab" aria-controls="ratings"
-                                        aria-selected="false">Ratings</a>
+                                        aria-selected="false">{{__('lang.detail.ratings')}}</a>
                                 </li>
                             </ul>
                             <div class="tab-content mx-3">
@@ -96,3 +96,31 @@
     </div>
 </section>
 @endsection
+
+@push('script')
+<script>
+    function addFavorite(title, imdbid, poster_url, year) {
+        // alert(title);
+        $.ajax({
+            url:"{{ url('movie/addfavorites') }}",
+            type:"GET",
+            data: {
+                'title' : title,
+                'imdbid' : imdbid,
+                'poster_url' : poster_url,
+                'year' : year,
+            },
+            success:function(data){
+                if(data.success == true){
+                    swal("Success!",data.message,"success");
+                }else{
+                    swal("Error!",data.message,"error");
+                }
+            },
+            error:function(data){
+                swal("Error!","Failed to add to Favorites","error");
+            }
+        })
+    }
+</script>
+@endpush

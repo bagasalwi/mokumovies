@@ -17,6 +17,7 @@ Route::get('/', 'MainController@home')->name('home');
 Route::get('/movie/{id}/{slug}', 'MainController@movieDetail')->name('detail');
 Route::get('/movie/search', 'MainController@searchMovie')->name('search');
 Route::get('/movie/addfavorites', 'FavoriteMovieController@addFavorites')->name('addfav');
+Route::get('/movie/delfavorites', 'FavoriteMovieController@delFavorites')->name('delfav');
 
 Route::get('/user/favorite', 'FavoriteMovieController@index')->name('favorite');
 

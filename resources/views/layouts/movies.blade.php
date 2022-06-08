@@ -16,7 +16,7 @@
     </a>
     <div class="fw-600 text-center text-white">
         <h6 class="pt-2">{{ $item->Title }}</h6>
-        <button onclick="addFavorite('{{ $item->Title }}','{{ $item->imdbID }}','{{ $item->Poster }}','{{ $item->Year }}')" class="btn btn-light btn-sm">tambah favorit</button>
+        <button onclick="addFavorite('{{ $item->Title }}','{{ $item->imdbID }}','{{ $item->Poster }}','{{ $item->Year }}')" class="btn btn-light btn-sm">{{__('lang.home.addbutton')}}</button>
     </div>
 </div>
 @endforeach
