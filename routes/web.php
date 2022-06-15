@@ -21,6 +21,6 @@ Route::get('/movie/delfavorites', 'FavoriteMovieController@delFavorites')->name(
 
 Route::get('/user/favorite', 'FavoriteMovieController@index')->name('favorite');
 
-Auth::routes();
+// Auth::routes();
 Route::get('/home', 'HomeController@index')->name('index');
 Route::get('lang/{lang}', 'MainController@switchLang')->name('lang.switch');
