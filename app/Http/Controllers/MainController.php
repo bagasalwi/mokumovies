@@ -9,7 +9,7 @@ class MainController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth']);
+        // $this->middleware(['auth']);
         $this->apiKey = '39c6e52b';
         $this->baseUrl = "https://www.omdbapi.com/?apikey=" . $this->apiKey;
     }

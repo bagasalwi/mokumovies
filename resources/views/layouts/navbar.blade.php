@@ -24,6 +24,26 @@
                 <a class="nav-link text-white {{ request()->is('browse') || request()->is('browse/*') ? 'font-weight-bold' : '' }}"
                     href="{{ url('/') }}">Home</a>
             </li>
+            @guest
+            <li class="nav-item py-2">
+                <a class="nav-link text-white {{ request()->is('browse') || request()->is('browse/*') ? 'font-weight-bold' : '' }}"
+                    href="{{ url('/login') }}">Login</a>
+            </li>
+            <li class="nav-item py-2 dropdown">
+                <a class="nav-link text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false"> {{ config('language')[App::getLocale()] }}
+                    <span class="no-pm"> <i
+                            class="fas fa-chevron-down"></i></span>
+                </a>
+                <div class="dropdown-menu">
+                    @foreach (config('language') as $lang => $language)
+                        @if ($lang != App::getLocale())
+                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
+                        @endif
+                    @endforeach
+                </div>
+            </li>
+            @else
             <li class="nav-item py-2">
                 <a class="nav-link text-white {{ request()->is('browse') || request()->is('browse/*') ? 'font-weight-bold' : '' }}"
                     href="{{ route('favorite') }}">{{__('lang.navbar.favorite')}}</a>
@@ -51,20 +71,7 @@
                     </form>
                 </div>
             </li>
-            <li class="nav-item py-2 dropdown">
-                <a class="nav-link text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false"> {{ config('language')[App::getLocale()] }}
-                    <span class="no-pm">{{ Str::upper(auth()->user()->username) }} <i
-                            class="fas fa-chevron-down"></i></span>
-                </a>
-                <div class="dropdown-menu">
-                    @foreach (config('language') as $lang => $language)
-                        @if ($lang != App::getLocale())
-                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
-                        @endif
-                    @endforeach
-                </div>
-            </li>
+            @endguest
         </ul>
     </div>
 
